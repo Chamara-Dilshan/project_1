@@ -1,15 +1,15 @@
 const express =  require('express');
 const app = express();
 const cors = require('cors');
-
 const port = 3001;
-const host = '127.0.0.1' ;
+const host = 'localhost' ;
 const mongoose = require('mongoose');
+const router = require('./router');
 
 app.use(cors());
 app.use(express.json());
 
-const uri ='mongodb+srv://Chamara1234:Dcd@11240@cluster0.j2ujoht.mongodb.net/?retryWrites=true&w=majority';
+const uri ='mongodb+srv://Chamara1234:Dcd11240@cluster0.j2ujoht.mongodb.net/?retryWrites=true&w=majority';
 
 const connect = async () => {
     try {
@@ -26,3 +26,5 @@ connect();
 const server = app.listen (port, host, () => {
     console.log('Node server is listening to ${server.address().port}')
 });                 
+ 
+app.use('/api',router);
