@@ -4,22 +4,31 @@ import React, { useEffect, useState } from 'react'
 const UserForm = ({addUser, updateUser,submitted, data, isEdit}) => {
     const [id, setId] = useState('')
     const [name, setName] = useState('')
-
+    const [mode, setMode] = useState('add') // a state variable to store the current mode of the form
 
 
     useEffect(() => {
         if (!submitted){
             setId('');
             setName('');
+            
         }
     }, [submitted]);
 
     useEffect(() => {
         if (data && data.id && data.id !==0 ){
             setId(data.id);
-            setName(data.name)
+            setName(data.name);
+            setMode('edit');  // set the mode to edit when data is passed as prop
         }
     }, [data]);
+
+// a function to reset the form fields and mode
+    const resetForm = () => {
+        setId('');
+        setName('');
+        setMode('add');
+    }
 
 
   return (
@@ -92,8 +101,9 @@ const UserForm = ({addUser, updateUser,submitted, data, isEdit}) => {
             }}
 
             onClick={() => {
-                if (isEdit) {
+                if (mode === 'edit') {                  // if (isEdit)
                     updateUser({ id: id, name: name });
+                    resetForm(); // reset the form after updating the user
                     
                 } else {
                     addUser({ id: id, name: name });
@@ -102,7 +112,8 @@ const UserForm = ({addUser, updateUser,submitted, data, isEdit}) => {
 
         > 
             {
-                isEdit ? 'Update' :'Add'
+                //isEdit ? 'Update' :'Add'
+                mode === 'edit' ? 'Update' :'Add' // render the button text based on the mode
                 
             } 
         </Button>

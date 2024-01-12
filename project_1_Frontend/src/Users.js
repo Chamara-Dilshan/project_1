@@ -31,6 +31,7 @@ const Users = () => {
   const addUser = (data) =>{
       setSubmitted(true);
       
+      if (data.id && data.name) {  // check if data has a valid id and name
       const payload = {
         id: data.id,
         name: data.name,
@@ -46,6 +47,11 @@ const Users = () => {
         .catch(error => {
             console.error("Axios Error : ", error);
         });
+      
+        // show an error message or disable the submit button
+      }  else {
+        alert("Please enter a valid id and name");
+      }
 
   }
   
