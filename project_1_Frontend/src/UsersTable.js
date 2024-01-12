@@ -2,7 +2,8 @@ import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, 
 import React from 'react'
 
 const UsersTable = ({rows}) => {
-  return (
+    console.log('Received rows:', rows);
+    return (
     <TableContainer component={Paper}>
         <Table>
             <TableHead>
@@ -15,7 +16,7 @@ const UsersTable = ({rows}) => {
             <TableBody>
                 {
                     rows.length > 0 ? rows.map(row => (
-                        <TableRow key={row.id}>
+                        <TableRow key={row.id} sx={{'&:last-child td, &:last-child th' : {border : 0}}}>
                             <TableCell component='th' scope="row">{row.id}</TableCell>
                             <TableCell component='th' scope="row">{row.name}</TableCell>
                             <TableCell>
@@ -35,7 +36,7 @@ const UsersTable = ({rows}) => {
 
                         </TableRow>
                     )) : (
-                        <TableRow>
+                        <TableRow sx={{'&:last-child td, &:last-child th' : {border : 0}}}>
                             <TableCell component='th' scope="row">No Data</TableCell>
                         </TableRow>
 
