@@ -3,7 +3,7 @@ import UserForm from './UserForm';
 import UsersTable from './UsersTable';
 import { Box } from '@mui/material';
 import  Axios  from "axios";
-import axios from 'axios';
+
 
 
 const Users = () => {
@@ -17,13 +17,14 @@ const Users = () => {
     Axios.get('http://localhost:3001/api/users')
       .then(response => {
         console.log('API Response:', response.data);  
-        setUsers(response.data?.response || []);
+        setUsers(response.data || []);
+        console.log('Users state:', response.data);
     })
     .catch(error => {
         console.error("Axios Error : ", error);
     });
   }
-  console.log('Users state:', users);
+  console.log('Users state new:', users);
          
   return (
     <div>
