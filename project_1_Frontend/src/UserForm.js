@@ -5,6 +5,8 @@ const UserForm = ({addUser, updateUser,submitted, data, isEdit}) => {
     const [id, setId] = useState('')
     const [name, setName] = useState('')
 
+
+
     useEffect(() => {
         if (!submitted){
             setId('');
@@ -18,6 +20,7 @@ const UserForm = ({addUser, updateUser,submitted, data, isEdit}) => {
             setName(data.name)
         }
     }, [data]);
+
 
   return (
     <Grid
@@ -87,11 +90,20 @@ const UserForm = ({addUser, updateUser,submitted, data, isEdit}) => {
                     backgroundColor:'#00c6e6'
                 }
             }}
-            onClick={() => isEdit ? updateUser({id: id, name: name}) : addUser({id: id, name: name})}   /* if equal key identifier = value identifier only need key or value {id, name}*/
+
+            onClick={() => {
+                if (isEdit) {
+                    updateUser({ id: id, name: name });
+                    
+                } else {
+                    addUser({ id: id, name: name });
+                }
+            }}   /* if equal key identifier = value identifier only need key or value {id, name}*/
 
         > 
             {
                 isEdit ? 'Update' :'Add'
+                
             } 
         </Button>
 

@@ -1,7 +1,7 @@
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import React from 'react'
 
-const UsersTable = ({rows, selectedUser}) => {
+const UsersTable = ({rows, selectedUser, deleteUser}) => {
     console.log('Received rows:', rows);
     return (
     <TableContainer component={Paper}>
@@ -28,7 +28,7 @@ const UsersTable = ({rows, selectedUser}) => {
                                 </Button>
                                 <Button
                                     sx={{margin:'0px 10px'}}
-                                    onClick={() => {}}
+                                    onClick={() => deleteUser({id: row.id})}
                                 >
                                     Delete
                                 </Button>
